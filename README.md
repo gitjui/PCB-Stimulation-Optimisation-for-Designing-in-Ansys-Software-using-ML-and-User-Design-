@@ -4,26 +4,36 @@ AI/ML-driven coil optimization for Wireless Power Transfer with user-friendly UX
 Overview
 Designing PCB-based resonators for Inductive Power Transfer (IPT) requires careful balancing of geometric parameters (trace width, spacing, turns, ratio) to achieve maximum Q-factor and efficiency.
 However, traditional simulation workflows (e.g., Ansys HFSS/HFSS APIs) are:
+
 ⚠️ Time-consuming → brute force trials require huge simulation runs
+
 ⚠️ Complex → non-experts struggle with parameter tuning
+
 ⚠️ Unintuitive → engineers must manually test designs across 4D parameter space
+
 This project introduces an AI + UX powered optimization tool that makes IPT resonator design faster, smarter, and more accessible.
 
  Key Features
 ✅ AI-driven Optimization
+
 Latin Hypercube Sampling (LHS) for evenly distributed sampling of 4D design space
 Dictionary-based Search to refine solutions near top candidates
 Ranking Algorithm to identify the optimal design with maximum objective function (obj)
+
 ✅ Hardware Realism
+
 Geometric parameters constrained by physical rules (e.g., coil inner radius ≥ 10mm)
 Simulation models generated and tested directly in Ansys HFSS
+
 ✅ User Experience Layer (GUI)
+
 Set parameter boundaries (w1, k, s, n) without coding
 Define number of simulation runs per stage (coarse → fine search)
 Set target frequency & constants
 Automatically retrieve optimal design parameters + simulation results
 
- Technical Architecture
+Technical Architecture
+ 
 Code Modules
 utils_double.py → Links Python ↔ HFSS to build & simulate models
 optimizer.py → Generates initial design database (100+ samples)
@@ -37,6 +47,7 @@ s → spacing between turns (2.0 – 4.0 mm)
 n → number of turns (15 – 25)
 
 Output & Results
+
 Database of Designs → 100+ samples representing the parameter space
 Refined Optimal Designs → Ranked by obj (Q-factor, efficiency)
 Top 10 Candidates displayed in GUI with full geometric parameters
@@ -48,12 +59,15 @@ index   obj     w1     k      s      n
 ...
 
  Impact
+ 
 ⏱ Reduced design iteration time from weeks → hours
 📊 Improved accuracy of optimal resonator selection by 20–30% vs random search
 👩‍💻 Enabled non-expert engineers to explore coil designs without learning HFSS scripting
 🌱 Supports sustainable hardware R&D by reducing simulation waste
 
+
  Tech Stack
+ 
 Python → Algorithms & HFSS integration
 Ansys HFSS → Electromagnetic simulation
 Pandas / JSON → Data handling & ranking
